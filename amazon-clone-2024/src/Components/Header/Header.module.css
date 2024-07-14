@@ -1,9 +1,4 @@
-*{
-  padding: 0;
-  margin: 0;
-}
 
-/* Header.module.css */
 .header {
     background-color: #131921;
     color: #fff;
@@ -70,7 +65,7 @@
   .headerSearch select,
   .headerSearch input,
   .headerSearchButton {
-  height: 39px; /* set a height for the elements */
+  height: 39px;
   border: none;
   padding: 0 5px;
 }
