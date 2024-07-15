@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './Header.module.css';
 import { BiCart } from "react-icons/bi";
 import { SlLocationPin } from "react-icons/sl";
 import { FiSearch } from "react-icons/fi";
 import { Link } from 'react-router-dom';
+import { DataContext } from '../DataProvider/DataProvider';
+import LowerHeader from './LowerHeader';
 
 
 function Header() {
+  const [{basket}, dispatch]= useContext(DataContext)
+  console.log(basket.length)
   return (
-    <header className={styles.header}>
+    <section className={styles.fixed}>
+    <section className={styles.header}>
       <div className={styles.headerContainer}>
         <Link  to ="/" className={styles.headerLogo}>
           <img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo" />
@@ -16,7 +21,7 @@ function Header() {
         <div className={styles.headerLocationAndSearch}>
           <div className={styles.headerLocation}>
             <span><SlLocationPin size={17} className={styles.headerLocationIcon}/></span>
-            <div>
+            <div className={styles.headerDeliver}>
               <p>Deliver to</p>
               <span>Ethiopia</span>
             </div>
@@ -56,14 +61,16 @@ function Header() {
           </Link>
           <Link  to="/Cart" className={styles.headerNavLink_cart}>
             <div>
-              <span>0</span>
+              <span>{basket.length}</span>
               <BiCart size={35}/>
             </div>
             <p>Cart</p>
           </Link>
         </div>
       </div>
-    </header>
+    </section>
+    <LowerHeader/>
+    </section>
   );
 }
 

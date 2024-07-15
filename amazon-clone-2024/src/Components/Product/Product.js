@@ -6,13 +6,13 @@ import Loader from '../Loader/Loader';
 
 function Product() {
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get('https://fakestoreapi.com/products');
         setProducts(res.data);
-        isLoading(false)
+        setIsLoading(false)
       } catch (error) {
         console.error('Error fetching products:', error);
         isLoading(false)
