@@ -22,35 +22,3 @@ const categoryInfo = [
   ]
 
   export default categoryInfo;
-
-
-
-
-// const categoryInfo = [
-//     {
-//       title: 'Gaming accessories',
-//       name: 'gaming-accessories',
-//       imgLink: 'https://via.placeholder.com/200x150',
-//       url: '/gaming-accessories'
-//     },
-//     {
-//       title: 'Shop deals in Fashion',
-//       name: 'fashion-deals',
-//       imgLink: 'https://via.placeholder.com/200x150',
-//       url: '/fashion-deals'
-//     },
-//     {
-//       title: 'Deals in PCs',
-//       name: 'pc-deals',
-//       imgLink: 'https://via.placeholder.com/200x150',
-//       url: '/pc-deals'
-//     },
-//     {
-//       title: 'Refresh your space',
-//       name: 'home-refresh',
-//       imgLink: 'https://via.placeholder.com/200x150',
-//       url: '/home-refresh'
-//     }
-//   ];
-  
-//   export default categoryInfo;

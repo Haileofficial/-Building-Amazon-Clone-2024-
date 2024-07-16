@@ -31,6 +31,8 @@ const Results = () => {
             <ProductCard
               key ={product.id}
               product={product}
+              renderDesc={false}
+              renderadd={true}
             />
           ))}
         </div>

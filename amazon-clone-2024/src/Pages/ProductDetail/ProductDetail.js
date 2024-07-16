@@ -33,6 +33,7 @@ const ProductDetail = () => {
         product={product}
         flex ={true}
         renderDesc ={true}
+        renderadd={true}
       />)}
       
     </Layout>
