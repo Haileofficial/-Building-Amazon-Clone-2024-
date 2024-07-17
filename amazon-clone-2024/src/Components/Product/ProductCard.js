@@ -23,16 +23,14 @@ function ProductCard({ product,flex,renderDesc, renderadd }) {
   };
   
   
-  
-  
   return (
     <div className={`${classes.card_container} ${flex ? classes.product_flexed : ''}`}>
       <Link to={`/products/${id}`}>
         <img src={image} alt='' />
       </Link>
-      <div style={{maxWidth: "1450px"}}>
+      <div className={classes.description_container}>
         <h3>{title}</h3>
-        {renderDesc && <div style={{maxWidth: "800px"}}>{description}</div>}
+        {renderDesc && <div>{description}</div>}
         <div className={classes.rating}>
           {/* rating */}
           {rating && rating.rate ? (
@@ -47,15 +45,17 @@ function ProductCard({ product,flex,renderDesc, renderadd }) {
           {/* price */}
           <CurrencyFormat amount={price} />
         </div>
-        {
-          renderadd &&<button className={classes.button} onClick={addToCart}>
+        {renderadd && (
+          <button className={classes.button} onClick={addToCart}>
             add to cart
-            </button>
-        }
-        
+          </button>
+        )}
       </div>
     </div>
   );
+
+
+
 }
 
 export default ProductCard;

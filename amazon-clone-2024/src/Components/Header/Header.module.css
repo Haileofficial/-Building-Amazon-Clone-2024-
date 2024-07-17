@@ -76,6 +76,8 @@
   }
   .headerSearch select:hover {
     background-color: #D4D4D4;
+    border: 1px solid white;
+    /* background-color: #131921; */
   }
   .headerLogo img,
   .headerSearch select,
@@ -100,7 +102,6 @@
   .headerNavigation {
     display: flex;
     align-items: center;
-    /* width: 30%; */
   }
   .headerNavigation  a{
     text-decoration: none;
@@ -165,6 +166,7 @@
   .headerContainer a:hover{
     border: 1px solid white;
     border-radius: 3px;
+    /* padding: 5px; */
   }
   .headerLocation:hover{
     border: 1px solid white;
@@ -180,3 +182,5 @@
       display: none;
     }
   }
+
+

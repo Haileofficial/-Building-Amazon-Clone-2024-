@@ -67,7 +67,7 @@ const Cart = () => {
                   <CurrencyFormat amount = {total}/>
                 </div>
                 <span>
-                  <input type='check box'/>
+                  <input type='check box' className={classes.checkbox}/>
                   <small>This order contains a gift</small>
                 </span>
                 <Link to= "/payments">continue to checkout</Link>
