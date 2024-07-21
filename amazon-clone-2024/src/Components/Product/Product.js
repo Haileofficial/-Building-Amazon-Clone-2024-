@@ -18,7 +18,6 @@ function Product() {
         isLoading(false)
       }
     };
-
     fetchProducts();
   }, []);
 

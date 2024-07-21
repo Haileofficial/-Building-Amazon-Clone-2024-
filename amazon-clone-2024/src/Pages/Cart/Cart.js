@@ -53,7 +53,6 @@ const Cart = () => {
                     <button className={classes.btn} onClick={()=>decrement(item.id)}><IoMdArrowDropdown size={30}/></button>
                   </div>
                   </section>
-                  
                   );
               })
             )

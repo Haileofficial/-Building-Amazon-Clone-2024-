@@ -6,14 +6,17 @@ import { FiSearch } from "react-icons/fi";
 import { Link } from 'react-router-dom';
 import { DataContext } from '../DataProvider/DataProvider';
 import LowerHeader from './LowerHeader';
+import {auth} from "../../Utility/firebase"
+
 
 
 
 function Header() {
-  const [{basket}, dispatch]= useContext(DataContext)
+  const [{user,basket}, dispatch]= useContext(DataContext)
   const totalItem = basket?.reduce((amount,item)=>{
     return item.amount + amount
   },0)
+  
   return (
     <section className={styles.fixed}>
     <section className={styles.header}>
@@ -48,12 +51,23 @@ function Header() {
               </select>
             </div>
           </Link>
-          <Link  to="#" className={styles.headerNavLink}>
+          <Link to={!user && "/auth"} className={styles.headerNavLink}>
             <div>
-              <p>Hello, sign in</p>
-              <select>
-                <option value= ""> Account & Lits</option>
-              </select>
+              {
+                user ? (
+                  <>
+                    <p>Hello, {user?.email?.split("@")[0]}</p>
+                    <span onClick={()=>auth.signOut()}>SignOut</span>
+                  </>
+                ) : (
+                      <>
+                        <p>Hello, sign in</p>
+                        <select>
+                          <option value="">Account & Lits</option>
+                        </select>
+                      </>
+                )
+              }
             </div>
           </Link>
           <Link  to="/Orders" className={styles.headerNavLink}>

@@ -1,60 +1,65 @@
+
+
 // import actionTypes from './action.type';
 
-
-// export const intialState = {
-//     basket: []
+// export const initialState = {
+//     basket: [],
+//     user: null
 // };
-
 
 // export const reducer = (state, action) => {
 //     switch (action.type) {
-//       case 'ADD_TO_BASKET':
-//         const existingItem = state.basket.find((item) => item.id === action.item.id);
-//         if (!existingItem) {
-//           return {
-//             ...state,
-//             basket: [...state.basket, { ...action.item, amount: 1 }],
-//           };
-//         } else {
-//           const updatedBasket = state.basket.map((item) => {
-//             return item.id === action.item.id
-//               ? { ...item, amount: item.amount + 1 }
-//               : item;
-//           });
-//           return {
-//             ...state,
-//             basket: updatedBasket,
-//           };
-//         }
-//         case 'REMOVE_FROM_BASKET':
-//           const index = state.basket.findIndex((item) => item.id === action.id);
-//           let newBasket = [...state.basket];
-        
-//           if (index >= 0) {
-//             if(newBasket[index] = {...newBasket[index],amount:newBasket[index].amount-1}
-              
-//             )else {
-//               newBasket.splice(index, 1);
+//         case actionTypes.ADD_TO_BASKET:
+//             const existingItem = state.basket.find((item) => item.id === action.item.id);
+//             if (!existingItem) {
+//                 return {
+//                     ...state,
+//                     basket: [...state.basket, {...action.item, amount:1}]
+//                 };
+//             } else {
+//                 const updatedBasket = state.basket.map((item) =>{
+//                     return  item.id === action.item.id? {...item, amount: item.amount + 1 }: item
+//                 });
+//                 return {
+//                     ...state,
+//                     basket: updatedBasket
+//                 }
 //             }
-//             return {
-//             ...state,
-//             basket: newBasket,
-//           };
-//           }
-//           default:
+//         case actionTypes.REMOVE_FROM_BASKET:
+//             const index = state.basket.findIndex((item) => item.id === action.id);
+//             let newBasket = [...state.basket];
+            
+//             if (index >= 0) {
+//                 if(newBasket[index].amount > 1) {
+//                     newBasket[index] = {...newBasket[index], amount: newBasket[index].amount - 1};
+//                 } else {
+//                     newBasket.splice(index, 1);
+//                 }
+//                 return {
+//                     ...state,
+//                     basket: newBasket
+//                 };
+//                 case actionTypes.SET_USER:
+//                     return{
+//                         ...state,
+//                         user:action.user
+//                     };
+//             }
+//             return state;
+//         default:
 //             return state;
 //     }
-//   };
+// };
+
 
 // export default reducer;
-
-
 
 
 import actionTypes from './action.type';
 
 export const initialState = {
-    basket: []
+    basket: [],
+    user: null
 };
 
 export const reducer = (state, action) => {
@@ -91,6 +96,11 @@ export const reducer = (state, action) => {
                 };
             }
             return state;
+        case actionTypes.SET_USER:
+            return{
+                ...state,
+                user:action.user
+            };
         default:
             return state;
     }
