@@ -9,9 +9,9 @@ import { axiosInstance } from '../../Api/axios';
 import { ClipLoader } from 'react-spinners';
 import { db } from '../../Utility/firebase';
 import { useNavigate } from 'react-router-dom';
-
+import actionTypes from "../../Utility/action.type"
 const Payment = () => {
-  const [{ user, basket }] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
   console.log(user);
   const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
@@ -38,45 +38,42 @@ const Payment = () => {
     e.preventDefault();
   
     try {
-      setProcessing(true)
+      setProcessing(true);
       // 1. Backend / functions ---> contact to the client secret
       const response = await axiosInstance({
         method: "POST",
         url: `/payment/create?total=${total * 100}`,
       });
-      // console.log(response.data);
       const { clientSecret } = response.data;
   
       // 2. Client-side (React side) confirmation
-      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      const {paymentIntent}  = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
         },
       });
-        // console.log(paymentIntent);
-
-        // 3. After the confirmation ---> order Firestore database save, clear basket
-        await db
+        console.log(paymentIntent);
+      // 3. After the confirmation ---> order Firestore database save, clear basket
+      await db
         .collection("users")
         .doc(user.uid)
-        .collection("Orders")
+        .collection("orders")
         .doc(paymentIntent.id)
         .set({
           basket: basket,
-          amount:paymentIntent.amount,
-          created: paymentIntent.created,
-        })
-        
-        setProcessing(false)
-        navigate("/Orders", { state: { msg: "You have a new order" } });
-      } catch (error) {
+          amount: paymentIntent.amount,
+          created: paymentIntent.created
+        });
+        dispatch({type:actionTypes.EMPTY_BASKET})
+      setProcessing(false);
+      // navigate("/orders", { state: { msg: "You have a new order" } });
+    } catch (error) {
       console.error('Error in payment:', error);
-      setProcessing(false)
+      setProcessing(false);
     }
+    navigate("/orders", { state: { msg: "You have a new order" } });
+
   };
-
-
-  
   return (
     <LayOut>
       {/* header */}

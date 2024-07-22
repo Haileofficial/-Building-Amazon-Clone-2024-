@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import classes from "./Auth.module.css";
 import { auth } from "../../Utility/firebase";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
@@ -16,6 +16,8 @@ const Auth = () => {
     SignUp: false,
   })
   const navigate = useNavigate()
+  const navStateData= useLocation()
+  console.log(navStateData);
   const actionTypes = {
     SET_USER: 'SET_USER',
     // Add any other action types you need
@@ -34,7 +36,7 @@ const Auth = () => {
           user: userCredential.user,
         });
         setLoading({ ...loading, SignIn: false })
-        navigate("/");
+        navigate(navStateData?.state?.redirect ||"/");
       } else {
         setLoading({ ...loading, SignUp: true })
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -43,7 +45,7 @@ const Auth = () => {
           user: userCredential.user,
         });
         setLoading({ ...loading, SignUp: false })
-        navigate("/");
+        navigate(navStateData?.state?.redirect ||"/");
       }
     } catch (err) {
       console.log(err);
@@ -63,6 +65,18 @@ const Auth = () => {
         {/* sign-in form */}
         <form className={classes.signInForm}>
           <h1>Sign-in</h1>
+          {
+            navStateData?.state?.msg &&(
+              <small style={{
+                padding:"5px",
+                textAlign: "center",
+                color: "red",
+                fontWeight: "bold",
+              }}>
+                {navStateData?.state?.msg}
+              </small>
+            )
+          }
           <label htmlFor="email">Email</label>
           <input value={email} onChange={(e) => setEmail(e.target.value)} id="email" type="email" placeholder="Enter your email" />
           <label htmlFor="password">Password</label>
@@ -79,7 +93,7 @@ const Auth = () => {
           {loading.SignUp ? (
               <ClipLoader color="black" size={15} />
             ) : (
-              ' Account Your Created'
+              ' Create account'
             )}
             </button>
           {

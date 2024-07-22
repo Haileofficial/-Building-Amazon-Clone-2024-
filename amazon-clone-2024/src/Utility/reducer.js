@@ -55,6 +55,7 @@
 // export default reducer;
 
 
+import { type } from '@testing-library/user-event/dist/type';
 import actionTypes from './action.type';
 
 export const initialState = {
@@ -96,6 +97,11 @@ export const reducer = (state, action) => {
                 };
             }
             return state;
+        case actionTypes.EMPTY_BASKET:
+            return{
+                ...state,
+                basket: "",
+            }
         case actionTypes.SET_USER:
             return{
                 ...state,

@@ -70,7 +70,7 @@ function Header() {
               }
             </div>
           </Link>
-          <Link  to="/Orders" className={styles.headerNavLink}>
+          <Link  to="/orders" className={styles.headerNavLink}>
             <div className={styles.headerNavLink_returns}>
               <div>Returns</div>
               <p>& Orders</p>
