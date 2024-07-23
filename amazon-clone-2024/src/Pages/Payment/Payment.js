@@ -64,9 +64,10 @@ const Payment = () => {
           amount: paymentIntent.amount,
           created: paymentIntent.created
         });
+        console.log(paymentIntent.amount);
+
         dispatch({type:actionTypes.EMPTY_BASKET})
       setProcessing(false);
-      // navigate("/orders", { state: { msg: "You have a new order" } });
     } catch (error) {
       console.error('Error in payment:', error);
       setProcessing(false);

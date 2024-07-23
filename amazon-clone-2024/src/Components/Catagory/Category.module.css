@@ -32,7 +32,6 @@
 }
 .catagory_container{
   position: relative;
-  /* margin: -100px 0 0 0; */
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
   max-width: 1600px;
