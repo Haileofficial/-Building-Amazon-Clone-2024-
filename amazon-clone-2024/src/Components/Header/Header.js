@@ -30,7 +30,7 @@ function Header() {
         </Link>
         <div className={styles.headerLocationAndSearch}>
           <div className={styles.headerLocation}>
-            <span><SlLocationPin size={17} className={styles.headerLocationIcon}/></span>
+            <span><SlLocationPin size={35} className={styles.headerLocationIcon}/></span>
             <div className={styles.headerDeliver}>
               <p>Deliver to</p>
               <span>Ethiopia</span>
